@@ -102,54 +102,64 @@ document.addEventListener('DOMContentLoaded', function() {
       const gununMenusu = uretilenMenuler[secilenGun];
       
       menuAlani.innerHTML = `
-        <h2>ÇORBA</h2>
-        <div class="list">
-          ${gununMenusu.corba.map((y, index) => `
-            <div class="corba" data-fiyat="${y.fiyat}" style="animation-delay: ${index * 0.1}s">
-              <img src="${y.image}">
-              <p>${y.isim}</p>
-              <p class="ucret">${y.fiyat}₺</p>
-            </div>`).join('')}
+        <div class="kategori-bolumu">
+          <h2>ÇORBA</h2>
+          <div class="list">
+            ${gununMenusu.corba.map((y, index) => `
+              <div class="corba" data-fiyat="${y.fiyat}" style="animation-delay: ${index * 0.1}s">
+                <img src="${y.image}">
+                <p>${y.isim}</p>
+                <p class="ucret">${y.fiyat}₺</p>
+              </div>`).join('')}
+          </div>
         </div>
         
-        <h2>ANA YEMEK</h2>
-        <div class="list">
-          ${gununMenusu.anaYemek.map((y, index) => `
-            <div class="yemek" data-fiyat="${y.fiyat}" style="animation-delay: ${index * 0.1}s">
-              <img src="${y.image}">
-              <p>${y.isim}</p>
-              <p class="ucret">${y.fiyat}₺</p>
-            </div>`).join('')}
+        <div class="kategori-bolumu">
+          <h2>ANA YEMEK</h2>
+          <div class="list">
+            ${gununMenusu.anaYemek.map((y, index) => `
+              <div class="yemek" data-fiyat="${y.fiyat}" style="animation-delay: ${index * 0.1}s">
+                <img src="${y.image}">
+                <p>${y.isim}</p>
+                <p class="ucret">${y.fiyat}₺</p>
+              </div>`).join('')}
+          </div>
         </div>
 
-        <h2>EŞLİKÇİ</h2>
-        <div class="list">
-          ${gununMenusu.eslikci.map((y, index) => `
-            <div class="yemek" data-fiyat="${y.fiyat}" style="animation-delay: ${index * 0.1}s">
-              <img src="${y.image}">
-              <p>${y.isim}</p>
-              <p class="ucret">${y.fiyat}₺</p>
-            </div>`).join('')}
+        <div class="kategori-bolumu">
+          <h2>EŞLİKÇİ</h2>
+          <div class="list">
+            ${gununMenusu.eslikci.map((y, index) => `
+              <div class="yemek" data-fiyat="${y.fiyat}" style="animation-delay: ${index * 0.1}s">
+                <img src="${y.image}">
+                <p>${y.isim}</p>
+                <p class="ucret">${y.fiyat}₺</p>
+              </div>`).join('')}
+          </div>
         </div>
 
-        <h2>SOĞUK</h2>
-        <div class="list">
-          ${gununMenusu.soguk.map((y, index) => `
-            <div class="soguk" data-fiyat="${y.fiyat}" style="animation-delay: ${index * 0.1}s">
-              <img src="${y.image}">
-              <p>${y.isim}</p>
-              <p class="ucret">${y.fiyat}₺</p>
-            </div>`).join('')}
+        <div class="kategori-bolumu">
+          <h2>SOĞUK</h2>
+          <div class="list">
+            ${gununMenusu.soguk.map((y, index) => `
+              <div class="soguk" data-fiyat="${y.fiyat}" style="animation-delay: ${index * 0.1}s">
+                <img src="${y.image}">
+                <p>${y.isim}</p>
+                <p class="ucret">${y.fiyat}₺</p>
+              </div>`).join('')}
+          </div>
         </div>
 
-        <h2>TATLI</h2>
-        <div class="list">
-          ${gununMenusu.tatli.map((y, index) => `
-            <div class="tatlı" data-fiyat="${y.fiyat}" style="animation-delay: ${index * 0.1}s">
-              <img src="${y.image}">
-              <p>${y.isim}</p>
-              <p class="ucret">${y.fiyat}₺</p>
-            </div>`).join('')}
+        <div class="kategori-bolumu">
+          <h2>TATLI</h2>
+          <div class="list">
+            ${gununMenusu.tatli.map((y, index) => `
+              <div class="tatlı" data-fiyat="${y.fiyat}" style="animation-delay: ${index * 0.1}s">
+                <img src="${y.image}">
+                <p>${y.isim}</p>
+                <p class="ucret">${y.fiyat}₺</p>
+              </div>`).join('')}
+          </div>
         </div>
       `;
       
@@ -226,6 +236,10 @@ document.addEventListener('DOMContentLoaded', function() {
           tumKayitlar[secilenTarih] = [];
         }
         
+        // O güne ait kayıtlarda, aynı isimli profil varsa onu filtreden geçirip siliyoruz!
+        tumKayitlar[secilenTarih] = tumKayitlar[secilenTarih].filter(kayit => kayit.profil !== profilAdi);
+        
+        // Şimdi eskisini sildiğimiz veya hiç olmayan o taze kaydı listeye ekliyoruz:
         tumKayitlar[secilenTarih].push({
           profil: profilAdi,
           yemekler: secilenYemekler
@@ -233,6 +247,11 @@ document.addEventListener('DOMContentLoaded', function() {
         
         localStorage.setItem('yemekKayitlari', JSON.stringify(tumKayitlar));
         alert(`Şahane! Seçimleriniz ${secilenTarih} tarihi için ${profilAdi} profiline kaydedildi.`);
+        
+        window.scrollTo ({
+            top: 0,
+            behavior: "smooth"
+        });
         
         onayFooter.classList.remove('active');
         seciliYemekKutulari.forEach(k => k.classList.remove('secili-yemek'));

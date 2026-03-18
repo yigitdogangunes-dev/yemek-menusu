@@ -16,7 +16,7 @@ body {
     background-attachment: fixed;
 }
 
-.hp__title {
+/* .hp__title {
     text-align: center;
     color : white;
     padding-top: 1em;
@@ -37,45 +37,99 @@ body {
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+} */
+
+/* 1. Yeni Kapsayıcı Div (Başlık ve Listeyi Ortalar) */
+.kategori-bolumu {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* H2 başlığı ve listeyi tam ortaya sabitler */
+    width: 100%;
 }
 
-.list {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); 
+/* 2. Başlığın Temizlenmiş Hali */
+.kategori-bolumu h2 {
     color: white;
-    padding-top: 2em;
-    padding-left: 2em;
-    padding-right: 2em;
-    padding-bottom: 2em;
-    gap: 20px;
-    text-align: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    letter-spacing: 2px;
+    margin: 10px; /* Listeyle arasına düzgün bir boşluk */
+    /* Eski amele "padding-left: 2em" falan hep çöpe gitti */
+}
+
+/* 3. Eski Grid'i Flex Yaptık */
+.list {
+    display: flex;
+    flex-direction: row;     /* YEMEKLERİ YAN YANA DİZER */
+    flex-wrap: wrap;         /* Satıra sığmazsa alt satıra geçirir */
+    justify-content: center; 
+    gap: 30px;               /* Kartlar arası boşluk */
+    width: 90%;
+    max-width: 1000px;
+    padding: 30px;           
     border: 2px solid grey;
     border-radius: 10px;
 }
 
+#dinamik-menu-alani {
+    display: flex;
+    flex-direction: column; /* İçindeki tüm kategorileri alt alta diz */
+    gap: 40px;              /* Kategorilerin ARASINA kusursuz boşluk at */
+}
+
+/* 1. Tüm Logoyu Ortala */
+.logo-container {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;    
+    justify-content: center; 
+    margin-top: 20px;       
+    margin-bottom: 20px;    
+}
+
+/* 2. Logonun Kendisini Ayarla */
+.main-logo {
+    height: 80px;           
+    width: auto;            
+    margin: 5px;     
+}
+
+/* 3. Ufak "yemek" Yazısının Stili */
+.logo-subtitle {
+    font-family: 'Fugaz One', sans-serif;
+    color: white;
+    background: linear-gradient(to right, #ff8800, #ff9900, #ffcc00);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 24px;        
+    font-weight: bold;      
+    letter-spacing: 1px; 
+}
+
+
 .list > div {
   padding: 10px;
   border-radius: 10px;
+  display: flex;
+  flex-direction: column;  /* Kartın içindeki resim ve yazıyı alt alta dizer */
+    align-items: center;     /* Kartın içindekileri tam ortaya hizalar */
+    width: 360px;
+    text-align: center;
   transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
   position: relative;
   opacity: 0;
   animation: asagidanSüzül 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  gap: 15px;
 }
 
-.container img{
+ img{
     width: 60%;
-    aspect-ratio: 1/1;
+    aspect-ratio: 1/1.container;
     object-fit: cover;
     border-radius: 7px;
 }
 
-.container h2{
-    color:white;
-    padding-left: 2em;
-    padding-top: 2em;
-    font-family: Bebas Neue;
-
-}
 
 .list img:hover{
     transition: 0.3s ease;
@@ -83,12 +137,11 @@ body {
     cursor: pointer;
 }
 .list img {
-    width: 60%; 
+    width: 250px; 
     aspect-ratio: 1/1;
     object-fit: cover;
     border-radius: 7px;
     transition: 0.3s ease;
-    margin: 0 auto;
     display: block; 
 }
 
@@ -117,14 +170,13 @@ body {
     color:white;
     font-family: Story Script;
     font-size: x-large;
-    padding-top: 1em;
 }
 
 .profile {
   display: flex;
   flex-wrap: wrap; 
+  justify-content: center;
   gap: 40px;
-  margin-left: 5em;
 }
 
 .profile img{
@@ -139,10 +191,10 @@ body {
   display: flex;
   align-items:center;       
   gap: 15px;
-  margin-top: 20px;
+  margin: 10px;
   border: 2px solid rgb(255, 255, 255);  
   border-radius: 45px;
-  padding: 15px  80px 15px 20px;
+  padding: 15px  60px 15px 20px;
 }
 
 .profile div.secili img {
@@ -176,15 +228,12 @@ body {
     justify-content: center;
     margin: 40px auto;
     width: 100%;
-    gap: 15px;
 }
 
 .tarih p{
     font-family: 'Bebas Neue', sans-serif;
     font-size: xx-large;
-    margin-bottom: 8px;
-    margin-left: 8px;
-    background: linear-gradient(to right, #ff6a00, #ff9900, #ffcc00);
+    background: linear-gradient( #ff6a00, #ff9900, #ffcc00);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -268,22 +317,19 @@ body {
     left: 50%;
     width: 10em;
     z-index: 9999;
+    transform: translateX(-50%);
     height: 3em;
     bottom: -100px;
     transition: bottom 0.4s ease;
+    color: white;
+    font-family: 'Fugaz One', sans-serif;
+    font-size: larger;
+    cursor: pointer;
+    outline: none; /* Butona tıklayınca tarayıcının attığı çirkin mavi çerçeveyi engeller */
 }
 
 .onayla.active {
     bottom: 20px;
-}
-
-.check p{
-    color: white;
-    font-family: Fugaz One;
-    font-size: larger;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .onayla:hover{
@@ -425,6 +471,9 @@ body {
   color: white;
   transform: scale(0.7);
   transition: transform 0.3s ease;
+  display: flex;
+  max-height: 80vh;
+  flex-direction: column;
 }
 
 .modal-arkaplan.acik .modal-pencere {
@@ -456,6 +505,9 @@ body {
 
 .modal-icerik{
     font-family: Story Script, cursive;
+    overflow-y: auto;    /* İçerik sığmazsa sadece bu div içinde kaydırma çubuğu çıkar */
+    padding-right: 10px; /* Kaydırma çubuğu yazıya yapışmasın diye */
+    flex-grow: 1;
 }
 
 .modal-icerik li{
@@ -566,8 +618,7 @@ body {
     display: flex;
     justify-content: center; /* Butonu yatay eksende merkeze hizalar */
     width: 100%;
-    margin-top: 50px;
-    margin-bottom: 40px;
+    margin: 50px 0;
 }
 
 .harcamalar-btn {

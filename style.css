@@ -98,7 +98,7 @@ body {
 .logo-subtitle {
     font-family: 'Fugaz One', sans-serif;
     color: white;
-    background: linear-gradient(to right, #ff8800, #ff9900, #ffcc00);
+    background: linear-gradient(to top, #ff8800, #ff9900, #ffcc00);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;

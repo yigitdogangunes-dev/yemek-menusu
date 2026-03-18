@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
   
-  
+  /*=========== will be imported from another file*=========== */
   const yemekVeritabani = {
     corba: [
       { isim: "Mercimek Çorbası", image: "assets/mercimek.jpg", fiyat: 70 },
@@ -68,6 +68,8 @@ document.addEventListener('DOMContentLoaded', function() {
 // // Formatı tam olarak YYYY-AA-GG şeklinde birleştirip takvime varsayılan değer olarak atıyoruz
 // tarihGirdisi.value = `${yil}-${ay}-${gun}`;
 // tarihGirdisi.dispatchEvent(new Event('change'));
+
+/*=========== will be imported from another file*=========== */
   function rastgeleSec(dizi, adet) {
     const kopya = [...dizi]; 
     console.log("deger:", kopya);
@@ -260,7 +262,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-
+/*=========== will be imported from another file*=========== */
   function aylikToplamiHesapla() {
     const toplamAlani = document.getElementById('profilToplamAlani');
     if (!toplamAlani) return; 
@@ -316,6 +318,7 @@ document.addEventListener('DOMContentLoaded', function() {
   let suAnkiTarih = new Date();
   const aylar = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"];
 
+  /*=========== will be imported from another file*=========== */
   function takvimiOlustur() {
     if(!gunlerKutusu) return; 
     
@@ -413,6 +416,7 @@ if (hucreTarihi > geceYarisiBugun) {
   const modalIcerik = document.querySelector('.modal-icerik');
   const modalBaslik = document.getElementById('modal-baslik');
 
+  /*=========== will be imported from another file*=========== */
   function modalIceriginiCiz(tarih, gunSayisi) {
     // 1. "2026-03-15" şeklindeki tarihi tirelerden (-) kılıçla üçe bölüyoruz.
     const parcalar = tarih.split('-'); // Elimizde şu an bir liste var: ["2026", "03", "15"]
